@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/Jeff-Marm-Al/student-registration/db"
 	"github.com/gin-gonic/gin"
 )

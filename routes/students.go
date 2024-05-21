@@ -38,5 +38,5 @@ func getAllStudents(context *gin.Context) {
 		return 
 	}
 
-	context.JSON(http.StatusOK, students)
+	context.JSON(http.StatusOK, gin.H{"message": "Successfully retrieved all students", "students": students})
 }

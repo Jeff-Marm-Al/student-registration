@@ -10,6 +10,12 @@ type Student struct {
 	Password  string `binding:"required"`
 }
 
+// struct for the purpose of the GetAllStudents function
+type AllStudents struct {
+	Firstname string `binding:"required"`
+	Lastname  string `binding:"required"`
+}
+
 // function to create students
 func (new *Student) Save() error {
 	// created sql query
@@ -36,7 +42,7 @@ func (new *Student) Save() error {
 }
 
 // function to list all students
-func GetAllStudents() ([]Student, error) {
+func GetAllStudents() ([]AllStudents, error) {
 	// querying the database for all students
 	query := "SELECT * FROM students"
 	rows, err := db.DB.Query(query)
@@ -61,5 +67,14 @@ func GetAllStudents() ([]Student, error) {
 		students = append(students, student)
 	}
 
-	return students, nil
+	allStudents := make([]AllStudents, len(students))
+
+	for i, student := range students {
+		allStudents[i] = AllStudents{
+			Firstname: student.Firstname,
+			Lastname: student.Lastname,
+		}
+	}
+
+	return allStudents, nil
 }

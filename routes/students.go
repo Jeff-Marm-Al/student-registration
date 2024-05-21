@@ -21,7 +21,7 @@ func createStudent(context *gin.Context) {
 	err = student.Save()
 
 	if err != nil {
-		context.JSON(http.StatusInternalServerError, gin.H{"message": "Could not create new student account."})
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "Could not create new student account.", "error": err.Error()})
 		return 
 	}
 
@@ -34,7 +34,7 @@ func getAllStudents(context *gin.Context) {
 	students, err := models.GetAllStudents()
 
 	if err != nil {
-		context.JSON(http.StatusInternalServerError, gin.H{"message": "Could not fetch all students. Try again later."})
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "Could not fetch all students. Try again later.", "error": err.Error()})
 		return 
 	}
 

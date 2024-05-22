@@ -44,6 +44,7 @@ func createTables() {
 		title VARCHAR(50) NOT NULL,
 		ticker VARCHAR(10) NOT NULL,
 		instructor_last_name VARCHAR(15) NOT NULL,
+		credits INTEGER NOT NULL,
 		capacity INTEGER NOT NULL 
 	)
 	`

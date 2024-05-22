@@ -16,7 +16,10 @@
     4. Open a new terminal in VS Code
     5. Verify that Go is installed by executing the following command: ```go version```
 
-After completing these steps, your machine should be ready. You will need to clone this repo to your local machine by executing the following command: ```git clone https://github.com/Jeff-Marm-Al/student-registration.git```
+After completing these steps, your machine should be ready. You will need to clone this repo to your local machine by executing the following command: 
+    ```
+    git clone https://github.com/Jeff-Marm-Al/student-registration.git
+    ```
 
 ## How to use
 Open this folder in VS Code and run the following command to start up the database server: ```go run .```

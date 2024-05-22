@@ -1,5 +1,5 @@
 # student-registration
-
+Project is not done. Work in progress
 ## Instructions for Setup
 1. Need to make sure VS Code Go extension is installed
     1. Open VS Code

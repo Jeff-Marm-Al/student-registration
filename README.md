@@ -24,4 +24,4 @@ After completing these steps, your machine should be ready. You will need to clo
 ## How to use
 Open this folder in VS Code and run the following command to start up the database server: ```go run .```
 
-Once the server is running, you can go to the api-test folder and execute the two current API calls there. At the moment, there is only API endpoints to create a student and to list all students (first and last name).
+Once the server is running, you can go to the api-test folder and execute the four current API calls there. At the moment, there is only API endpoints to create a student, to list all students (first and last name), create a course, and list all courses.

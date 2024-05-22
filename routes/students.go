@@ -25,7 +25,7 @@ func createStudent(context *gin.Context) {
 		return 
 	}
 
-	context.JSON(http.StatusCreated, gin.H{"message": "Student account created", "event": student})
+	context.JSON(http.StatusCreated, gin.H{"message": "Student account created", "student": student})
 
 }
 

@@ -7,13 +7,13 @@ type Course struct {
 	Title              string `binding:"required"`
 	Ticker             string `binding:"required"`
 	InstructorLastName string `binding:"required"`
-	Credits            int64 `binding:"required"`
-	Capacity           int64 `binding:"required"`
+	Credits            int64  `binding:"required"`
+	Capacity           int64  `binding:"required"`
 }
 
 type AllCourses struct {
-	Ticker string
-	Title string
+	Ticker  string
+	Title   string
 	Credits int64
 }
 

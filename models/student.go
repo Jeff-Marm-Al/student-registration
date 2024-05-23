@@ -44,7 +44,7 @@ func (new *Student) Save() error {
 // function to list all students
 func GetAllStudents() ([]AllStudents, error) {
 	// querying the database for all students
-	query := "SELECT * FROM students"
+	query := "SELECT first_name, last_name FROM students"
 	rows, err := db.DB.Query(query)
 
 	if err != nil {
@@ -53,27 +53,18 @@ func GetAllStudents() ([]AllStudents, error) {
 
 	defer rows.Close()
 
-	var students []Student
+	var allStudents []AllStudents
 
 	for rows.Next() {
 		// new student struct for each student
-		var student Student
-		err := rows.Scan(&student.StudentID, &student.Firstname, &student.Lastname, &student.Email, &student.Password)
+		var student AllStudents
+		err := rows.Scan(&student.Firstname, &student.Lastname)
 
 		if err != nil {
 			return nil, err
 		}
 
-		students = append(students, student)
-	}
-
-	allStudents := make([]AllStudents, len(students))
-
-	for i, student := range students {
-		allStudents[i] = AllStudents{
-			Firstname: student.Firstname,
-			Lastname: student.Lastname,
-		}
+		allStudents = append(allStudents, student)
 	}
 
 	return allStudents, nil

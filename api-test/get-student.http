@@ -1,1 +1,1 @@
-GET http://localhost:8080/students/<student first name>/<student last name>
+GET http://localhost:8080/students/student/<firstname>/<lastname>

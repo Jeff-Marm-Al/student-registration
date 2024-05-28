@@ -24,7 +24,7 @@ func InitDB() {
 func createTables() {
 	createStudentsTable := `
 	CREATE TABLE IF NOT EXISTS students (
-		student_id INTEGER(4) NOT NULL PRIMARY KEY AUTOINCREMENT,
+		student_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 		first_name TEXT NOT NULL,
 		last_name TEXT NOT NULL,
 		email TEXT NOT NULL UNIQUE,
@@ -40,7 +40,7 @@ func createTables() {
 
 	createCoursesTable := `
 	CREATE TABLE IF NOT EXISTS courses (
-		course_id INTEGER(4) NOT NULL PRIMARY KEY AUTOINCREMENT,
+		course_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 		title VARCHAR(50) NOT NULL,
 		ticker VARCHAR(10) NOT NULL,
 		instructor_last_name VARCHAR(15) NOT NULL,
@@ -58,8 +58,8 @@ func createTables() {
 	createRegistrationsTable := `
 	CREATE TABLE IF NOT EXISTS registrations (
 		registration_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-		student_id INTEGER(4),
-		course_id INTEGER(4),
+		student_id INTEGER,
+		course_id INTEGER,
 		registration_date DATE,
 		FOREIGN KEY (student_id) REFERENCES students(student_id),
 		FOREIGN KEY (course_id) REFERENCES courses(course_id)

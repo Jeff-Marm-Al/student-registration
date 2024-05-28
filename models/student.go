@@ -69,3 +69,19 @@ func GetAllStudents() ([]AllStudents, error) {
 
 	return allStudents, nil
 }
+
+func GetStudentInfo(firstname, lastname string) (*Student, error) {
+	// querying database for all students where the firstname and lastname match what is provided
+	query := "SELECT * FROM students WHERE first_name = ? AND last_name = ?"
+	row:= db.DB.QueryRow(query, firstname, lastname)
+
+	var student Student
+
+	err := row.Scan(&student.StudentID, &student.Firstname, &student.Lastname, &student.Email, &student.Password)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return &student, nil
+}

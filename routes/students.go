@@ -40,3 +40,14 @@ func getAllStudents(context *gin.Context) {
 
 	context.JSON(http.StatusOK, gin.H{"message": "Successfully retrieved all students", "students": students})
 }
+
+func getStudentInfo(context *gin.Context) {
+	student, err := models.GetStudentInfo(context.Param("firstname"), context.Param("lastname"))
+
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "Could not get student info. Try again later.", "error": err.Error()})
+		return 
+	}
+
+	context.JSON(http.StatusOK, gin.H{"message": "Successfully retrieved student info", "student": student})
+}

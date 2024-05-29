@@ -1,6 +1,8 @@
 package models
 
-import "github.com/Jeff-Marm-Al/student-registration/db"
+import (
+	"github.com/Jeff-Marm-Al/student-registration/db"
+)
 
 type Student struct {
 	StudentID int64
@@ -73,7 +75,7 @@ func GetAllStudents() ([]AllStudents, error) {
 func GetStudentInfo(firstname, lastname string) (*Student, error) {
 	// querying database for all students where the firstname and lastname match what is provided
 	query := "SELECT * FROM students WHERE first_name = ? AND last_name = ?"
-	row:= db.DB.QueryRow(query, firstname, lastname)
+	row := db.DB.QueryRow(query, firstname, lastname)
 
 	var student Student
 
@@ -84,4 +86,23 @@ func GetStudentInfo(firstname, lastname string) (*Student, error) {
 	}
 
 	return &student, nil
+}
+
+func (student Student) UpdateStudentInfo() error {
+	query := `
+	UPDATE students 
+	SET first_name = ?, last_name = ?, email = ?, password = ?
+	WHERE first_name = ? AND last_name = ?
+	`
+	statement, err := db.DB.Prepare(query)
+
+	if err != nil {
+		return err
+	}
+
+	defer statement.Close()
+
+	_, err = statement.Exec(student.Firstname, student.Lastname, student.Email, student.Password, student.Firstname, student.Lastname)
+
+	return err
 }

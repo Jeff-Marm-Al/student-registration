@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/Jeff-Marm-Al/student-registration/models"
@@ -50,4 +51,35 @@ func getStudentInfo(context *gin.Context) {
 	}
 
 	context.JSON(http.StatusOK, gin.H{"message": "Successfully retrieved student info", "student": student})
+}
+
+func updateStudentInfo(context *gin.Context) {
+	// gets the students info from the database
+	student, err := models.GetStudentInfo(context.Param("firstname"), context.Param("lastname"))
+
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "Could not get student info. Try again later.", "error": err.Error()})
+		return 
+	}
+
+	// empty struct to update student info with
+	var updatedStudent models.Student
+	
+	err = context.ShouldBindJSON(&updatedStudent) 	// payload of the api call applied to the empty struct
+
+	if err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"message": "Could not parse provided data", "error": err.Error()})
+		return 
+	}
+
+	updatedStudent.StudentID = student.StudentID 	// assigns student ID to the updated student struct to keep the same
+
+	err = updatedStudent.UpdateStudentInfo() // api call to actually update the student info
+
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "Could not update student info. Try again later.", "error": err.Error()})
+		return 
+	}
+	
+	context.JSON(http.StatusOK, gin.H{"message": "Successfully updated student info", "student": updatedStudent})
 }

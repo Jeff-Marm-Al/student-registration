@@ -72,10 +72,10 @@ curl -X POST http://localhost:8080/students \
 
 This curl would list all students
 ```
-curl -X GET http://localhost:8080/students' | jq
+curl -X GET http://localhost:8080/students | jq
 ```
 
 This curl would list the student created in the first example
 ```
-curl -X GET http://localhost:8080/students/Kyle/Garcia' | jq
+curl -X GET http://localhost:8080/students/Kyle/Garcia | jq
 ```

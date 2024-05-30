@@ -38,25 +38,27 @@ Open this folder in VS Code and run the following command to start up the databa
 Once the server is running, you can go to the api-test folder and execute the four current API calls there. At the moment, there is only API endpoints to create a student, to list all students (first and last name), create a course, and list all courses.
 
 ### With a Docker Container
+Pre-req: Must have docker desktop installed and have it open in the background
+
 1. In your VS Code terminal, execute the following command to build a local docker image using the docker file
-```
-docker build -t <name the image> .
-```
+    ```
+    docker build -t <name the image> .
+    ```
 
 2. Execute the following command to start up the container in detached mode with the container port 8080 mapped to the host port 8080
-```
-docker run -d -p 8080:8080 --name <name the container> <image name from previous step>
-```
+    ```
+    docker run -d -p 8080:8080 --name <name the container> <image name from previous step>
+    ```
 
 3. Verify that the container is running by executing the following command to list the containers running
-```
-docker ps -a
-```
+    ```
+    docker ps -a
+    ```
 
 4. Verify in the logs for the container that the server is running using the container ID from the previous step's output
-```
-docker logs <container ID>
-```
+    ```
+    docker logs <container ID>
+    ```
 
 If all is functioning correctly, you can now execute curl commands to the API server running in the container. The following are some examples of curl commands you can make to get you started off:
 (if you do not have jq installed, remove "| jq" from the curl commands)

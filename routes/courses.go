@@ -2,7 +2,6 @@ package routes
 
 import (
 	"net/http"
-
 	"github.com/Jeff-Marm-Al/student-registration/models"
 	"github.com/gin-gonic/gin"
 )
